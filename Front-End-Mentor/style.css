@@ -1,0 +1,15 @@
+*{
+    background-color: rgb(255, 255, 255);
+    color: white;
+    margin: 10px 0;
+    text-decoration: none;
+}
+
+span#content-name{
+    color: #080a8f;
+    font-family: sans-serif;
+}
+
+ul{
+    list-style: none;
+}
