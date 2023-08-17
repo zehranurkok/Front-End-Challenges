@@ -102,6 +102,17 @@ body {
     overflow-y: auto;
 }
 
+.task {
+    display: flex;
+    flex-direction: row;
+    color:#fff ;
+    margin: 10px;
+}
+
+.task input {
+    font-size: large;
+}
+
 .add {
     display: flex;
     align-items: flex-end;
