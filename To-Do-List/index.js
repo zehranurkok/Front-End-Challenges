@@ -1,4 +1,4 @@
-import express from "express";
+import express, { request } from "express";
 import bodyParser from "body-parser";
 
 const app = express();
@@ -12,23 +12,27 @@ let month = months[d.getMonth()];
 let day = days[d.getDay()-1];
 let year = d.getFullYear();
 
+let taskList = [];
+
 app.use(express.static("public"));
 
 app.use(bodyParser.urlencoded({ extended: true}));
 
 app.get("/", (req, res) => { 
     res.render("app.ejs", { thisday: day, thismonth: month, thisyear: year});
-})
-
-app.get("/submit", (req, res) => {
-    res.render("list.ejs")
+    taskList = [];
 })
 
 app.post("/submit", (req, res) => {
-    const text = req.body["addtask"];
-    res.render("app.ejs", {newtext: text, thisday: day, thismonth: month, thisyear: year})
+    let text = req.body["addtask"];
+    if (text !== "") {
+        taskList.push(text);
+        console.log(taskList.length);
+        res.render("app.ejs", { tasklist: taskList, task: text, thisday: day, thismonth: month, thisyear: year});
+    }
 })
 
 app.listen(port, () => {
     console.log(`Surver running on port ${port}.`);
 })
+

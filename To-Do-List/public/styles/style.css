@@ -1,12 +1,42 @@
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8px;
+}
+
 .container {
     display: grid;
     grid-template-rows: 1fr, 1fr, 1fr, 1fr, 1fr;
     grid-template-columns: repeat(7, 1fr);
     align-items: center;
+    position: relative;
     padding: 10px;
     margin: 10px;
     border: 2px solid #fff;
     border-radius: 15px;
+    box-shadow: 0px 0px 10px 1px #fff;
+}
+
+.calendar {
+    display: flex;
+    flex-direction: row;
+}
+
+.month {
+    color: #fff;
+    font-size: xx-large;
+    writing-mode:vertical-rl;
+    -webkit-transform: rotate(-180deg);
+    margin: 50px 0px 570px;
 }
 
 .day-type {
@@ -28,13 +58,7 @@
     background-color: #d6d6d698;
     border: 1px groove #fff;
     border-radius: 5px;
-}
-
-.content {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    word-break: keep-all;
 }
 
 footer span{
@@ -66,6 +90,7 @@ body {
     margin: 5px;
     border: 2px solid #fff;
     border-radius: 15px;
+    box-shadow: 0px 0px 10px 1px #fff;
 }
 
 .date {
@@ -84,6 +109,7 @@ body {
 .date span {
     color: #4b2edf;
     font-weight: bold;
+    margin-right: 10px;
 }
 
 .list::-webkit-scrollbar-track
@@ -96,22 +122,32 @@ body {
 .tasks {
     background-color: #d6d6d698;
     border: 1px groove #fff;
-    border-radius: 10px;
+    border-radius: 15px;
     height: 550px;
     width: 330px;
-    overflow-y: auto;
+    overflow-x: auto;
+    word-break: keep-all;
 }
 
 .task {
     display: flex;
     flex-direction: row;
-    color:#fff ;
+    color:#fff;
+}
+
+.task span {
     margin: 10px;
 }
 
-.task input {
-    font-size: large;
+.task p {
+    margin: 6px;
+    padding: 0px;
 }
+
+.task input {
+    margin: 0px 0px 0px 10px;
+}
+
 
 .add {
     display: flex;
@@ -144,5 +180,12 @@ body {
 input::placeholder {
     color: #fff;
     opacity: 0.7; 
+    font-weight: bold;
 }
 
+input:checked + p {
+    text-decoration: line-through;
+    text-decoration-color: #4b2edf;
+    text-decoration-style: wavy;
+    text-decoration-thickness: 0.2rem;;
+}

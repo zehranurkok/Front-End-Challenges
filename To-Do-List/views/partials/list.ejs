@@ -4,11 +4,13 @@
             <span><%= new Date().getDate() %> <%= locals.thismonth %> <%= locals.thisyear %>, <%= locals.thisday %></span>
         </div>
         <div class="tasks">
-            <% if (locals.newtext) { %>
-                <div class="task">
-                    <input type="checkbox" name="checkbox" >
-                    <p><%= newtext %></p>
-                </div>
+            <% if (locals.task) { %>
+                <% locals.tasklist.forEach(element => { %>
+                    <div class="task">
+                        <input type="checkbox" name="checkbox">
+                        <p><%= element %></p>
+                    </div>
+                <%  }); %>
             <% } else { %>
                     <div class="task">
                         <span>Add task</span>
