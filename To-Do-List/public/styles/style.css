@@ -55,26 +55,51 @@ body {
     height: 100vh;
 }
 
-.task {
+.list {
     width: 350px;
     height: 675px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     padding: 10px;
     margin: 5px;
     border: 2px solid #fff;
     border-radius: 15px;
-    overflow-y: auto;
-    
 }
 
-.task::-webkit-scrollbar-track
+.date {
+    background-color: #ffffffdf;
+    border: 1px groove #fff;
+    margin: 5px 5px 0px 5px;
+    padding: 5px;
+    width: 320px;
+    height: 25px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.date span {
+    color: #4b2edf;
+    font-weight: bold;
+}
+
+.list::-webkit-scrollbar-track
 {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 	border-radius: 10px;
 	background-color: #F5F5F5;
+}
+
+.tasks {
+    background-color: #d6d6d698;
+    border: 1px groove #fff;
+    border-radius: 10px;
+    height: 550px;
+    width: 330px;
+    overflow-y: auto;
 }
 
 .add {

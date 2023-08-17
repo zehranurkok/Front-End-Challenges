@@ -1,6 +1,9 @@
 <form action="/submit" method="POST">
-    <div class="task">
-        <div></div>
+    <div class="list">
+        <div class="date">
+            <span><%= new Date().getDate() %> <%= locals.thismonth %> <%= locals.thisyear %>, <%= locals.thisday %></span>
+        </div>
+        <div class="tasks"></div>
         <div class="add">
             <input type="submit" value="+" class="addButton">
             <input type="text" name="addtask" id="create" placeholder="Create a new task" class="create">
