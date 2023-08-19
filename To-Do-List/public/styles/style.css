@@ -127,20 +127,31 @@ body {
     width: 330px;
     overflow-x: auto;
     word-break: keep-all;
+    position: relative;
+}
+
+.description {
+    display: flex;
+    flex-direction: row;
 }
 
 .task {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     color:#fff;
+    border: 1px groove #fff;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 10px;
 }
 
 .task span {
-    margin: 10px;
+    margin: 5px;
 }
 
 .task p {
-    margin: 6px;
+    margin: 2px;
     padding: 0px;
 }
 
@@ -148,6 +159,28 @@ body {
     margin: 0px 0px 0px 10px;
 }
 
+.deleteButton {
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px groove #fff;
+    background-color: #fff;
+    color: #4eb647;
+    padding: 5px;
+}
+
+.deleteAllButton {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    border-radius: 10px;
+    border: 1px groove #fff;
+    background-color: #fff;
+    color: #4eb647;
+    font-weight: bold;
+    padding: 10px;
+    margin: 5px;
+}
 
 .add {
     display: flex;

@@ -4,18 +4,28 @@
             <span><%= new Date().getDate() %> <%= locals.thismonth %> <%= locals.thisyear %>, <%= locals.thisday %></span>
         </div>
         <div class="tasks">
-            <% if (locals.task) { %>
-                <% locals.tasklist.forEach(element => { %>
+            <% if (locals.task || locals.newtasklist) { %>
+                <% locals.tasklist.forEach(i => { %>
                     <div class="task">
-                        <input type="checkbox" name="checkbox">
-                        <p><%= element %></p>
+                        <div class="description">
+                            <input type="checkbox" name="<% i %>" >
+                            <p><%= i %></p>
+                        </div>
+                        <div class="button">
+                            <form action="/delete">
+                                <input type="submit" value="Delete" class="deleteButton">
+                            </form>
+                        </div>
                     </div>
                 <%  }); %>
             <% } else { %>
                     <div class="task">
                         <span>Add task</span>
                     </div>
-            <% } %> 
+            <% } %>
+            <form action="/delete-all">
+                <input type="submit" value="Delete All" class="deleteAllButton">
+            </form> 
         </div>
         <div class="add">
             <input type="submit" value="+" class="addButton">

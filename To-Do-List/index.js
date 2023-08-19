@@ -13,6 +13,7 @@ let day = days[d.getDay()-1];
 let year = d.getFullYear();
 
 let taskList = [];
+let index = 0;
 
 app.use(express.static("public"));
 
@@ -20,17 +21,24 @@ app.use(bodyParser.urlencoded({ extended: true}));
 
 app.get("/", (req, res) => { 
     res.render("app.ejs", { thisday: day, thismonth: month, thisyear: year});
-    taskList = [];
 })
 
 app.post("/submit", (req, res) => {
     let text = req.body["addtask"];
-    if (text !== "") {
+    if (text !== "" ) {
         taskList.push(text);
         console.log(taskList.length);
-        res.render("app.ejs", { tasklist: taskList, task: text, thisday: day, thismonth: month, thisyear: year});
+        res.render("app.ejs", {tasklist: taskList, i: index, task: text, thisday: day, thismonth: month, thisyear: year});
     }
+    app.get("/delete-all", (req, res) => { 
+        // taskList.splice(index,1);
+        taskList = [];
+        res.render("app.ejs", {tasklist: taskList, i: index, thisday: day, thismonth: month, thisyear: year});
+    })
 })
+
+
+
 
 app.listen(port, () => {
     console.log(`Surver running on port ${port}.`);
