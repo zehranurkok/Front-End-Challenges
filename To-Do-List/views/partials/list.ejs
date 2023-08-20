@@ -4,25 +4,33 @@
             <span><%= new Date().getDate() %> <%= locals.thismonth %> <%= locals.thisyear %>, <%= locals.thisday %></span>
         </div>
         <div class="tasks">
-            <% if (locals.task || locals.newtasklist) { %>
-                <% locals.tasklist.forEach(i => { %>
-                    <div class="task">
-                        <div class="description">
-                            <input type="checkbox" name="<% i %>" >
-                            <p><%= i %></p>
+            <% if (locals.task ) { %>
+                    
+                    <% locals.tasklist.forEach(element  => { %> 
+                        <div class="task">
+                            <div class="description">
+                                <input type="checkbox" name="checkbox">
+                                <p><%= element %></p>
+                            </div>
+                            <div class="button">
+                                <form action="/delete">
+                                    <input type="submit" value="Delete" class="deleteButton">
+                                </form>
+                            </div>
                         </div>
-                        <div class="button">
-                            <form action="/delete">
-                                <input type="submit" value="Delete" class="deleteButton">
-                            </form>
-                        </div>
-                    </div>
-                <%  }); %>
+                        <% locals.i =  locals.i+1; %>
+                        <% console.log(locals.tasklist); %>
+                        <% console.log(locals.ntasklist); %>
+                        <% console.log(locals.i); %>
+                    <% }); %>
+                    <% locals.ntasklist[locals.i] == locals.task; %>
+                    <% locals.i =  locals.i+1; %>
             <% } else { %>
                     <div class="task">
                         <span>Add task</span>
                     </div>
             <% } %>
+            
             <form action="/delete-all">
                 <input type="submit" value="Delete All" class="deleteAllButton">
             </form> 
