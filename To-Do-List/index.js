@@ -15,7 +15,7 @@ let year = d.getFullYear();
 
 let taskList = [];
 let newTaskList = [];
-let index = -1;
+let index = 0;
 let newItem ="";
 let text = "";
 
@@ -29,36 +29,31 @@ app.get("/", (req, res) => {
     res.render("app.ejs", {thisday: day, thismonth: month, thisyear: year});
 })
 
-app.post("/submit", (req, res) => {
-    text = req.body["addtask"];  
-    if (text !== "" ) {
-        taskList.push(text);
-    // console.log(text);
-    }
-    res.render("app.ejs", {ntasklist: newTaskList, tasklist: taskList, i: index, task: text, thisday: day, thismonth: month, thisyear: year});
-
-})
-taskList.pop();
-
-
-
-app.get("/delete", (req, res) => { 
-    // taskIndex = taskList.indexOf(index);  
-    // console.log(newTaskList);
-    console.log(taskList);
+app.post("/delete", (req, res) => { 
     console.log(text);
-    // let rTaskList = taskList.splice(index,1);
-    // taskList = taskList.filter(x => !rTaskList.includes(x));
-    
-    res.render("app.ejs", {ntasklist: newTaskList, tasklist: taskList, task: text, thisday: day, thismonth: month, thisyear: year});
-
+    console.log(index);
+    console.log(taskList); 
+    let taskIndex = taskList.indexOf(text);  
+    taskList = taskList.splice(taskIndex,1);
+    console.log(taskIndex);
+    res.render("app.ejs", {ntasklist: newTaskList, tasklist: taskList, i: index, task: text, thisday: day, thismonth: month, thisyear: year});
 })
 
-app.get("/delete-all", (req, res) => { 
+app.post("/submit", (req, res) => {
+    text = req.body["addtask"];
+    if (text !== "" ) {
+        // taskList[index] = text;
+        taskList.push(text);
+        // console.log(text);
+    }
+    // index++;
+    res.render("app.ejs", {ntasklist: newTaskList, tasklist: taskList, i: index, task: text, thisday: day, thismonth: month, thisyear: year});
+})
+
+app.post("/delete-all", (req, res) => { 
     taskList = [];
     res.render("app.ejs", {ntasklist:newTaskList, tasklist: taskList, i: index, task: text, thisday: day, thismonth: month, thisyear: year});
 })
-
 
 
 app.listen(port, () => {
