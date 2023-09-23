@@ -29,15 +29,15 @@ app.get("/", (req, res) => {
     res.render("app.ejs", {thisday: day, thismonth: month, thisyear: year});
 })
 
-app.post("/delete", (req, res) => { 
-    console.log(text);
-    console.log(index);
-    console.log(taskList); 
-    let taskIndex = taskList.indexOf(text);  
-    taskList = taskList.splice(taskIndex,1);
-    console.log(taskIndex);
-    res.render("app.ejs", {ntasklist: newTaskList, tasklist: taskList, i: index, task: text, thisday: day, thismonth: month, thisyear: year});
-})
+// app.post("/delete", (req, res) => { 
+//     console.log(text);
+//     console.log(index);
+//     console.log(taskList); 
+//     let taskIndex = taskList.indexOf(text);  
+//     taskList = taskList.splice(taskIndex,1);
+//     console.log(taskIndex);
+//     res.render("app.ejs", {ntasklist: newTaskList, tasklist: taskList, i: index, task: text, thisday: day, thismonth: month, thisyear: year});
+// })
 
 app.post("/submit", (req, res) => {
     text = req.body["addtask"];
