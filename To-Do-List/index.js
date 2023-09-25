@@ -69,4 +69,4 @@ app.post("/delete-all", (req, res) => {
 
 app.listen(port, () => {
     console.log(`Surver running on port ${port}.`);
-})
+}) 
