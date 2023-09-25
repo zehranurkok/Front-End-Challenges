@@ -1,6 +1,7 @@
 import express, { request } from "express";
 import bodyParser from "body-parser";
 import { localsName } from "ejs";
+import db, { Schema } from "mongoose";
 
 const app = express();
 const port = 3000;
@@ -12,6 +13,15 @@ const d = new Date();
 let month = months[d.getMonth()];
 let day = days[ d.getDay() === 0 ? d.getDay()+6 : d.getDay()-1];
 let year = d.getFullYear();
+
+
+db.connect('mongodb://127.0.0.1:27017/todolistDB');
+
+const itemsSchema = new Schema ({
+    content: String
+});
+
+const Item = db.model("Item", itemsSchema);
 
 let taskList = [];
 let newTaskList = [];
@@ -26,7 +36,8 @@ app.use(bodyParser.urlencoded({ extended: true}));
 app.get("/", (req, res) => { 
     index = 0;
     taskList = [];
-    res.render("app.ejs", {thisday: day, thismonth: month, thisyear: year});
+    const todoItems = Item.find({});
+    res.render("app.ejs", {thisday: day, thismonth: month, thisyear: year, newitems: todoItems});
 })
 
 // app.post("/delete", (req, res) => { 
@@ -59,6 +70,3 @@ app.post("/delete-all", (req, res) => {
 app.listen(port, () => {
     console.log(`Surver running on port ${port}.`);
 })
-
-
-
