@@ -9,18 +9,18 @@
                 <span>Add task</span>
             </div>
     <% } else { %>
-        <% locals.tasklist.forEach(element => { %> 
-            <!-- <form action="/delete" method="POST"> -->
+        <% locals.tasklist?.forEach(element => { %> 
+            <form action="/delete" method="POST">
                 <div class="task">
                     <div class="description">
-                            <input type="checkbox" name="checkbox">
+                            <input type="checkbox" name="checkbox" value="<%= element._id %>" onChange="this.form.submit()">
                             <p><%= element.content %></p>
                     </div>
                     <!-- <div class="button">
                             <input type="submit" value="Delete" class="deleteButton">
                     </div> -->
                 </div>
-            <!-- </form> -->
+            </form>
         <% }); %>
     <% } %>
         <!-- <form action="/delete-all" method="POST">

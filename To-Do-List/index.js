@@ -27,14 +27,13 @@ const Item = db.model("Item", itemsSchema);
 
 app.get("/", (req, res) => { 
    Item.find({}).then(item => {
-        console.log(item);
         res.render("app.ejs", { thisday: day, thismonth: month, thisyear: year, tasklist: item});
     });
     console.log("------------------------------------------------------------");
 })
 
 app.post("/", (req, res) => {
-    let text = req.body["addtask"];
+    const text = req.body["addtask"];
     if (text !== "") {
         const nItem = new Item ({
             content: text
@@ -46,9 +45,15 @@ app.post("/", (req, res) => {
     }
 })
 
-app.post("/delete-all", (req, res) => { 
-    taskList = [];
-    res.render("app.ejs", { thisday: day, thismonth: month, thisyear: year});
+app.post("/delete", (req, res) => { 
+    const checkedId = req.body["checkbox"];
+    Item.deleteOne({ _id: checkedId}).then(function(){
+        console.log("Data deleted!"); // Success
+    }).catch(function(error){
+        console.log(error); // Failure
+    });
+    console.log(checkedId);
+    res.redirect("/");
 })
 
 app.listen(port, () => {
