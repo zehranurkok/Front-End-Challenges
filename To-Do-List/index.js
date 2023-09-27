@@ -26,16 +26,16 @@ const itemsSchema = new Schema ({
 const Item = db.model("Item", itemsSchema);
 
 app.get("/", (req, res) => { 
-    let item = Item.find({}).then(item => {
+   Item.find({}).then(item => {
+        console.log(item);
         res.render("app.ejs", { thisday: day, thismonth: month, thisyear: year, tasklist: item});
-        console.log(item); 
     });
-    
+    console.log("------------------------------------------------------------");
 })
 
 app.post("/", (req, res) => {
     let text = req.body["addtask"];
-    if (text !== "" ) {
+    if (text !== "") {
         const nItem = new Item ({
             content: text
         });
